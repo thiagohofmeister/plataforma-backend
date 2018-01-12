@@ -1,0 +1,29 @@
+{
+  "name": "thiagohof/plataforma-backend",
+  "description": "Backend da plataforma de SEO.",
+  "authors": [
+    {
+      "name": "Thiago Hofmeister",
+      "email": "thiago.hofmeister@gmail.com"
+    }
+  ],
+  "require": {
+    "php-di/slim-bridge": "~1.1.0",
+    "php-di/php-di": "~5.4.0",
+    "doctrine/annotations": "^1.6",
+    "doctrine/orm": "2.4.*",
+    "symfony/yaml": "2.*",
+    "eloquent/enumeration": "5.1.*"
+  },
+  "require-dev": {
+    "digitalnature/php-ref": "1.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": [
+        "src/",
+        "tests/"
+      ]
+    }
+  }
+}
