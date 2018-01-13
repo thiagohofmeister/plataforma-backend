@@ -5,9 +5,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @todo Document class Post.
- *
- * @author Thiago Hofmeister <thiago.souza@moovin.com.br>
+ * @ORM\Entity
+ * @ORM\Table(name="posts")
  */
 class Post extends AbstractEntity
 {
@@ -32,16 +31,6 @@ class Post extends AbstractEntity
      * @ORM\Column(type="string", length=100)
      */
     protected $slug;
-
-    /**
-     * Get array copy of object
-     *
-     * @return array
-     */
-    public function getArrayCopy()
-    {
-        return get_object_vars($this);
-    }
 
     /**
      * Get photo id

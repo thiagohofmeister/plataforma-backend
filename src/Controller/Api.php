@@ -3,7 +3,8 @@
 namespace App\Controller;
 
 use App\Core\Controller;
-use App\Entity;
+use App\Enum\HttpStatusCode;
+use App\Repository\Post;
 use App\Service;
 
 /**
@@ -13,16 +14,22 @@ use App\Service;
  */
 class Api extends Controller
 {
-    /** @var Entity\Post */
-    private $entity;
+    /** @var Post */
+    private $moduleRepository;
+
+    /** @var Service\Post */
+    private $postService;
 
     /**
-     * @param Entity\Post $entity
+     * @param Post $moduleRepository
+     * @param Service\Post $postService
      */
-    public function __construct(Entity\Post $entity)
+    public function __construct(Post $moduleRepository, Service\Post $postService)
     {
-        $this->entity = $entity;
+        $this->moduleRepository = $moduleRepository;
+        $this->postService = $postService;
     }
+
 
     /**
      * @return mixed
@@ -31,6 +38,8 @@ class Api extends Controller
      */
     public function post()
     {
-        return (new Service\Post())->action();
+        $response = $this->postService->action();
+
+        return $this->renderResponse($response, HttpStatusCode::OK());
     }
 }

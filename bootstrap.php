@@ -8,9 +8,6 @@ use DI\Bridge\Slim\App;
 use DI\ContainerBuilder;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Tools\Console\ConsoleRunner;
-use Doctrine\ORM\Tools\Setup;
 
 include_once '../vendor/autoload.php';
 
@@ -18,7 +15,8 @@ $app = new class() extends App {
 
     protected function configureContainer(ContainerBuilder $builder)
     {
-        $builder->useAnnotations(true);
+        $builder->useAnnotations(true)
+            ->addDefinitions(CONFIG . DS . 'config.php');
     }
 };
 
@@ -42,21 +40,7 @@ $app->any('/{controller}[/[{method}[/{parameters:.*}]]]',  function (Request $re
         ], 404);
     }
 
-    $config = Setup::createAnnotationMetadataConfiguration(
-        ['app/src/Entity'],
-        true,
-        null,
-        null,
-        false
-    );
-    $connectionParams = [
-        'dbname' => 'plataforma',
-        'user' => 'plataforma',
-        'password' => 'platform',
-        'host' => 'localhost:3306',
-        'driver' => 'pdo_mysql',
-    ];
-    $container->set(\Doctrine\ORM\EntityManager::class, EntityManager::create($connectionParams, $config));
+    $container->set(Request::class, $request);
 
     $controllerObject = $container->get($controllerName)
         ->setResponse($response)
@@ -78,7 +62,6 @@ $app->any('/{controller}[/[{method}[/{parameters:.*}]]]',  function (Request $re
     }
 
     try {
-
         return call_user_func_array([$controllerObject, $methodName], $parameters);
 
     } catch (Exception $exception) {

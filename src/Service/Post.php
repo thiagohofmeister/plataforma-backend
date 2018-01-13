@@ -13,9 +13,11 @@ use Slim\Http\Request;
  */
 class Post extends Contract\Service
 {
-
-    public function get()
+    /**
+     * @inheritDoc
+     */
+    public function get(array $parameters)
     {
-        die("asdasd");
+        return $this->moduleRepository->get($parameters);
     }
 }

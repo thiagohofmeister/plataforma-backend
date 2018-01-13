@@ -4,26 +4,28 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Doctrine\ORM\Tools\Setup;
 
-$config = Setup::createAnnotationMetadataConfiguration(
-    ['app/src/Entity'],
-    true,
-    null,
-    null,
-    false
-);
-$connectionParams = [
-    'dbname' => 'plataforma',
-    'user' => 'plataforma',
-    'password' => 'platform',
-    'host' => 'localhost:3306',
-    'driver' => 'pdo_mysql',
+return [
+    EntityManager::class => function (\Interop\Container\ContainerInterface $container) {
+        $config = Setup::createAnnotationMetadataConfiguration(
+            ['app/src/Entity'],
+            true,
+            null,
+            null,
+            false
+        );
+        $connectionParams = [
+            'dbname' => 'plataforma',
+            'user' => 'plataforma',
+            'password' => 'platform',
+            'host' => '192.168.0.101',
+            'driver' => 'pdo_mysql',
+        ];
+
+        return EntityManager::create($connectionParams, $config);
+    },
+    //'database.app' => ConsoleRunner::createHelperSet($em),
+    'settings.displayErrorDetails' => true
 ];
-
-$em = EntityManager::create($connectionParams, $config);
-
-return $em;
-
-return [ConsoleRunner::createHelperSet($em)];
 
 
 

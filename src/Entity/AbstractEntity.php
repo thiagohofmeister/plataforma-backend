@@ -9,15 +9,15 @@ use Doctrine\ORM\EntityManager;
  *
  * @author Thiago Hofmeister <thiago.souza@moovin.com.br>
  */
-class AbstractEntity
+abstract class AbstractEntity
 {
     /**
-     * @var \Doctrine\ORM\EntityManager
+     * Get array copy of object
+     *
+     * @return array
      */
-    protected $entityManager = null;
-
-    public function __construct(EntityManager $entityManager)
+    public function getArrayCopy()
     {
-        $this->entityManager = $entityManager;
+        return get_object_vars($this);
     }
 }

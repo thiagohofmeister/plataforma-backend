@@ -2,6 +2,7 @@
 
 namespace App\Contract;
 
+use App\Repository\Post;
 use DI\Container;
 use Doctrine\ORM\EntityManager;
 use Slim\Http\Request;
@@ -13,32 +14,32 @@ use Slim\Http\Request;
  */
 abstract class Service
 {
-    /** @var Container */
-    private $container;
+    /** @var Post */
+    protected $moduleRepository;
 
     /** @var Request */
-    private $request;
+    protected $request;
 
     /**
-     * @param Container $container
+     * @param Post $moduleRepository
      * @param Request $request
      */
-    public function __construct(Container $container, Request $request)
+    public function __construct(Post $moduleRepository, Request $request)
     {
-        $this->container = $container;
         $this->request = $request;
+        $this->moduleRepository = $moduleRepository;
     }
 
     /**
      * @param array[] $parameters
      *
-     * @return mixed
+     * @return array
      *
      * @throws \Exception
      */
-    public function action(array ...$parameters): mixed
+    public function action(array ...$parameters)
     {
-        ~r($this->container->get(EntityManager::class));
+
         if ($this->request->isGet()) {
             return $this->get($parameters);
         }
@@ -63,11 +64,9 @@ abstract class Service
     /**
      * @param array $parameters
      *
-     * @return mixed
-     *
      * @throws \Exception
      */
-    protected function get(array $parameters): mixed
+    protected function get(array $parameters)
     {
         throw new \Exception("Method not implemented");
     }
@@ -76,11 +75,9 @@ abstract class Service
      *
      * @param array $parameters
      *
-     * @return mixed
-     *
      * @throws \Exception
      */
-    protected function post(array $parameters): mixed
+    protected function post(array $parameters)
     {
         throw new \Exception("Method not implemented");
     }
@@ -89,11 +86,9 @@ abstract class Service
      *
      * @param array $parameters
      *
-     * @return mixed
-     *
      * @throws \Exception
      */
-    protected function put(array $parameters): mixed
+    protected function put(array $parameters)
     {
         throw new \Exception("Method not implemented");
     }
@@ -102,11 +97,9 @@ abstract class Service
      *
      * @param array $parameters
      *
-     * @return mixed
-     *
      * @throws \Exception
      */
-    protected function patch(array $parameters): mixed
+    protected function patch(array $parameters)
     {
         throw new \Exception("Method not implemented");
     }
@@ -114,11 +107,9 @@ abstract class Service
     /**
      * @param array $parameters
      *
-     * @return mixed
-     *
      * @throws \Exception
      */
-    protected function delete(array $parameters): mixed
+    protected function delete(array $parameters)
     {
         throw new \Exception("Method not implemented");
     }
