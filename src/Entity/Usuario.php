@@ -296,11 +296,11 @@ class Usuario extends AbstractEntity
             'facebook' => $this->getFacebook(),
             'googleplus' => $this->getGoogleplus(),
             'twitter' => $this->getTwitter(),
-            'cargo' => $this->getCargo(),
+            'cargo' => $this->getCargo()->toArray(),
         ];
 
         try {
-            $toArray['genero'] = Genre::memberByValue($this->getGenero());
+            $toArray['genero'] = Genre::memberByValue($this->getGenero())->getLabel();
         } catch (\Exception $exception) {
             // previne fatal error
         }
