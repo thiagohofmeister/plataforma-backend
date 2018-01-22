@@ -21,7 +21,7 @@ class Post extends Contract\Service
      *
      * @return Base\Response
      */
-    public function get($parameters): Base\Response
+    public function get($parameters = []): Base\Response
     {
         $posts = $this->serviceRespository->getAll();
         if (!empty($posts)) {
