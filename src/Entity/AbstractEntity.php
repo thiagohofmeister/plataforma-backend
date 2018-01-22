@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @todo Document class AbstractEntity.

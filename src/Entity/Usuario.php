@@ -6,6 +6,8 @@ use App\Enum\Genre;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Modelagem referente aos usuarios.
+ *
  * @ORM\Entity
  * @ORM\Table(name="usuarios")
  */

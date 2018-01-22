@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Modelagem referente ao seo das paginas.
+ *
  * @ORM\Entity
  * @ORM\Table(name="pagina_seos")
  */
@@ -18,28 +20,28 @@ class PaginaSeo extends AbstractEntity
     protected $url;
 
     /**
-     * @ORM\Column(type="string", length=180)
+     * @ORM\Column(name="seo_title", type="string", length=180)
      *
      * @var string $seoTitle
      */
     protected $seoTitle;
 
     /**
-     * @ORM\Column(type="string", length=150)
+     * @ORM\Column(name="seo_description", type="string", length=150)
      *
      * @var string $seoDescription
      */
     protected $seoDescription;
 
     /**
-     * @ORM\Column(type="string", length=180)
+     * @ORM\Column(name="seo_spam_text", type="string", length=180)
      *
      * @var string $seoSpamText
      */
     protected $seoSpamText;
 
     /**
-     * @ORM\Column(type="string", length=200)
+     * @ORM\Column(name="seo_open_graph", type="string", length=200)
      *
      * @var string $seoOpenGraph
      */

@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Modelagem referente aos cargos.
+ *
  * @ORM\Entity
  * @ORM\Table(name="cargos")
  */

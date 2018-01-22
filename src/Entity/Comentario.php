@@ -5,13 +5,15 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Modelagem referente aos comentarios.
+ *
  * @ORM\Entity
  * @ORM\Table(name="comentarios")
  */
 class Comentario extends AbstractEntity
 {
     /**
-     * @ORM\Column(type="string", length=80)
+     * @ORM\Column(name="nome_autor", type="string", length=80)
      *
      * @var string $nomeAutor
      */
@@ -25,7 +27,7 @@ class Comentario extends AbstractEntity
     protected $email;
 
     /**
-     * @ORM\Column(type="string", length=250)
+     * @ORM\Column(name="comentario_texto", type="string", length=250)
      *
      * @var string $comentarioTexto
      */
@@ -39,7 +41,7 @@ class Comentario extends AbstractEntity
     protected $status;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(name="data_comentario", type="datetime")
      *
      * @var \DateTime $dataComentario
      */

@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Modelagem referente aos conteudos.
+ *
  * @ORM\Entity
  * @ORM\Table(name="conteudos")
  */

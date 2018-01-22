@@ -6,6 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Modelagem referente as postagens.
+ *
  * @ORM\Entity
  * @ORM\Table(name="posts")
  */
@@ -47,42 +49,42 @@ class Post extends AbstractEntity
     protected $conteudo;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(name="data_postagem", type="datetime")
      *
      * @var \DateTime $dataPostagem
      */
     protected $dataPostagem;
 
     /**
-     * @ORM\Column(type="string", length=180)
+     * @ORM\Column(name="seo_title", type="string", length=180)
      *
      * @var string $seoTitle
      */
     protected $seoTitle;
 
     /**
-     * @ORM\Column(type="string", length=150)
+     * @ORM\Column(name="seo_description", type="string", length=150)
      *
      * @var string $seoDescription
      */
     protected $seoDescription;
 
     /**
-     * @ORM\Column(type="string", length=180)
+     * @ORM\Column(name="seo_spam_text", type="string", length=180)
      *
      * @var string $seoSpamText
      */
     protected $seoSpamText;
 
     /**
-     * @ORM\Column(type="string", length=200)
+     * @ORM\Column(name="seo_open_graph", type="string", length=200)
      *
      * @var string $seoOpenGraph
      */
     protected $seoOpenGraph;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(name="possui_seo", type="boolean")
      *
      * @var bool $possuiSeo
      */
