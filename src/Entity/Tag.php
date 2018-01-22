@@ -136,7 +136,6 @@ class Tag extends AbstractEntity
         $toArray = [
             'nome' => $this->getNome(),
             'slug' => $this->getSlug(),
-            'posts' => $this->getPosts(),
         ];
 
         if (!empty($this->getId())) {

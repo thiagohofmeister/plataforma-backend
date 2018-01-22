@@ -149,9 +149,9 @@ class Usuario extends AbstractEntity
     /**
      * Retorna a propriedade {@see Usuario::$genero}.
      *
-     * @return Genre
+     * @return string
      */
-    public function getGenero(): Genre
+    public function getGenero(): string
     {
         return $this->genero;
     }
@@ -293,13 +293,17 @@ class Usuario extends AbstractEntity
             'imagem' => $this->getImagem(),
             'nome' => $this->getNome(),
             'email' => $this->getEmail(),
-            'genero' => $this->getGenero(),
             'facebook' => $this->getFacebook(),
             'googleplus' => $this->getGoogleplus(),
             'twitter' => $this->getTwitter(),
-            'password' => $this->getPassword(),
             'cargo' => $this->getCargo(),
         ];
+
+        try {
+            $toArray['genero'] = Genre::memberByValue($this->getGenero());
+        } catch (\Exception $exception) {
+            // previne fatal error
+        }
 
         if (!empty($this->getId())) {
             $toArray['id'] = $this->getId();
@@ -321,7 +325,6 @@ class Usuario extends AbstractEntity
             ->setFacebook($array['facebook'])
             ->setGoogleplus($array['googleplus'])
             ->setTwitter($array['twitter'])
-            ->setPassword($array['password'])
             ->setCargo($array['cargo']);
     }
 }

@@ -7,10 +7,10 @@ use Eloquent\Enumeration\AbstractEnumeration;
 /**
  * Tipos de métodos Http
  *
- * @method static HttpMethod GET()
- * @method static HttpMethod POST()
- * @method static HttpMethod PUT()
- * @method static HttpMethod DELETE()
+ * @method static Genre GET()
+ * @method static Genre POST()
+ * @method static Genre PUT()
+ * @method static Genre DELETE()
  *
  * @author Thiago Hofmeister <thiago.hofmeister@gmail.com>
  */

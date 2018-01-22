@@ -9,8 +9,6 @@ namespace App\Core;
  */
 abstract class Controller extends Core
 {
-
-
     protected function index()
     {
 

@@ -119,7 +119,7 @@ class Categoria extends AbstractEntity
      *
      * @return string
      */
-    public function getDescricao(): string
+    public function getDescricao(): ?string
     {
         return $this->descricao;
     }
@@ -142,7 +142,7 @@ class Categoria extends AbstractEntity
      *
      * @return string
      */
-    public function getSeoTitle(): string
+    public function getSeoTitle(): ?string
     {
         return $this->seoTitle;
     }
@@ -165,7 +165,7 @@ class Categoria extends AbstractEntity
      *
      * @return string
      */
-    public function getSeoDescription(): string
+    public function getSeoDescription(): ?string
     {
         return $this->seoDescription;
     }
@@ -188,7 +188,7 @@ class Categoria extends AbstractEntity
      *
      * @return string
      */
-    public function getSeoSpamText(): string
+    public function getSeoSpamText(): ?string
     {
         return $this->seoSpamText;
     }
@@ -211,7 +211,7 @@ class Categoria extends AbstractEntity
      *
      * @return string
      */
-    public function getSeoOpenGraph(): string
+    public function getSeoOpenGraph(): ?string
     {
         return $this->seoOpenGraph;
     }

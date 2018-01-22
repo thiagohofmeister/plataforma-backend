@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Core\Controller;
-use App\Enum\HttpStatusCode;
 use App\Repository\Post;
 use App\Service;
 
@@ -30,7 +29,6 @@ class Api extends Controller
         $this->postService = $postService;
     }
 
-
     /**
      * @return mixed
      *
@@ -40,6 +38,6 @@ class Api extends Controller
     {
         $response = $this->postService->action();
 
-        return $this->renderResponse($response, HttpStatusCode::OK());
+        return $this->renderResponse($response->getData(), $response->getStatusCode());
     }
 }

@@ -1,7 +1,6 @@
 <?php
 
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Doctrine\ORM\Tools\Setup;
 
 return [
@@ -18,6 +17,14 @@ return [
             'user' => 'plataforma',
             'password' => 'platform',
             'host' => '192.168.0.101',
+            'driver' => 'pdo_mysql',
+        ];
+
+        $connectionParams = [
+            'dbname' => 'magodaweb',
+            'user' => 'magodaweb',
+            'password' => 'hof120540',
+            'host' => 'mysql.magodaweb.com.br',
             'driver' => 'pdo_mysql',
         ];
 

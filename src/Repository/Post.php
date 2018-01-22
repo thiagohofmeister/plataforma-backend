@@ -10,15 +10,17 @@ namespace App\Repository;
 class Post extends AbstractRepository
 {
     /**
-     * @param array $parameters
+     * Retorna lista com todas postagens.
      *
      * @return array
      */
-    public function get(array $parameters): array
+    public function getAll(): array
     {
         $posts = [];
+        /** @var \App\Entity\Post $item */
         foreach ($this->table->findAll() as $item) {
-            $posts[] = $item->getArrayCopy();
+
+            $posts[] = $item->toArray();
         }
 
         return $posts;

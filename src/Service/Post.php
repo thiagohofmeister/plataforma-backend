@@ -3,11 +3,11 @@
 namespace App\Service;
 
 use App\Contract;
-use App\Entity\Post as Entity;
-use Slim\Http\Request;
+use App\Enum\HttpStatusCode;
+use App\Service\Base;
 
 /**
- * @todo Document class Post.
+ * Servico relacionado as postagens.
  *
  * @author Thiago Hofmeister <thiago.souza@moovin.com.br>
  */
@@ -15,9 +15,19 @@ class Post extends Contract\Service
 {
     /**
      * @inheritDoc
+     *
+     * @return Base\Response
      */
     public function get(array $parameters)
     {
-        return $this->moduleRepository->get($parameters);
+        $posts = $this->moduleRepository->getAll();
+        if (!empty($posts)) {
+            return Base\Response::create([
+                'total' => count($posts),
+                'posts' => $posts
+            ], HttpStatusCode::OK());
+        }
+
+        return Base\Response::create(['message' => 'Nenhuma postagem encontrada.'], HttpStatusCode::OK());
     }
 }

@@ -17,8 +17,8 @@ use Eloquent\Enumeration\AbstractEnumeration;
 final class Genre extends AbstractEnumeration
 {
     /** @var string Genero Feminino */
-    const FEMALE = 'F';
+    const FEMALE = 'f';
 
     /** @var string Genero Masculino */
-    const MALE = 'M';
+    const MALE = 'm';
 }

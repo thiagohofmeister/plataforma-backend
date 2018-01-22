@@ -203,7 +203,7 @@ class Post extends AbstractEntity
      *
      * @return string
      */
-    public function getMigalha(): string
+    public function getMigalha(): ?string
     {
         return $this->migalha;
     }
@@ -272,7 +272,7 @@ class Post extends AbstractEntity
      *
      * @return string
      */
-    public function getSeoTitle(): string
+    public function getSeoTitle(): ?string
     {
         return $this->seoTitle;
     }
@@ -295,7 +295,7 @@ class Post extends AbstractEntity
      *
      * @return string
      */
-    public function getSeoDescription(): string
+    public function getSeoDescription(): ?string
     {
         return $this->seoDescription;
     }
@@ -318,7 +318,7 @@ class Post extends AbstractEntity
      *
      * @return string
      */
-    public function getSeoSpamText(): string
+    public function getSeoSpamText(): ?string
     {
         return $this->seoSpamText;
     }
@@ -341,7 +341,7 @@ class Post extends AbstractEntity
      *
      * @return string
      */
-    public function getSeoOpenGraph(): string
+    public function getSeoOpenGraph(): ?string
     {
         return $this->seoOpenGraph;
     }
@@ -507,10 +507,13 @@ class Post extends AbstractEntity
             'seoOpenGraph' => $this->getSeoOpenGraph(),
             'possuiSeo' => $this->isPossuiSeo(),
             'status' => $this->isStatus(),
-            'usuario' => $this->getUsuario(),
-            'categoria' => $this->getCategoria(),
-            'tags' => $this->getTags(),
+            'usuario' => $this->getUsuario()->toArray(),
+            'categoria' => $this->getCategoria()->toArray(),
         ];
+
+        foreach ($this->getTags() as $tag) {
+            $toArray['tags'][] = $tag->toArray();
+        }
 
         if (!empty($this->getId())) {
             $toArray['id'] = $this->getId();

@@ -75,7 +75,7 @@ class PaginaSeo extends AbstractEntity
      *
      * @return string
      */
-    public function getSeoTitle(): string
+    public function getSeoTitle(): ?string
     {
         return $this->seoTitle;
     }
@@ -98,7 +98,7 @@ class PaginaSeo extends AbstractEntity
      *
      * @return string
      */
-    public function getSeoDescription(): string
+    public function getSeoDescription(): ?string
     {
         return $this->seoDescription;
     }
@@ -121,7 +121,7 @@ class PaginaSeo extends AbstractEntity
      *
      * @return string
      */
-    public function getSeoSpamText(): string
+    public function getSeoSpamText(): ?string
     {
         return $this->seoSpamText;
     }
@@ -144,7 +144,7 @@ class PaginaSeo extends AbstractEntity
      *
      * @return string
      */
-    public function getSeoOpenGraph(): string
+    public function getSeoOpenGraph(): ?string
     {
         return $this->seoOpenGraph;
     }

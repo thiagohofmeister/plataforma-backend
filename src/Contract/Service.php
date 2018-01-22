@@ -3,8 +3,7 @@
 namespace App\Contract;
 
 use App\Repository\Post;
-use DI\Container;
-use Doctrine\ORM\EntityManager;
+use App\Service\Base;
 use Slim\Http\Request;
 
 /**
@@ -33,13 +32,12 @@ abstract class Service
     /**
      * @param array[] $parameters
      *
-     * @return array
+     * @return Base\Response
      *
      * @throws \Exception
      */
     public function action(array ...$parameters)
     {
-
         if ($this->request->isGet()) {
             return $this->get($parameters);
         }
