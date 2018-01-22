@@ -223,4 +223,41 @@ class Comentario extends AbstractEntity
         $this->post = $post;
         return $this;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray(): array
+    {
+        $toArray = [
+            'nomeAutor' => $this->getNomeAutor(),
+            'email' => $this->getEmail(),
+            'comentarioTexto' => $this->getComentarioTexto(),
+            'status' => $this->isStatus(),
+            'dataComentario' => $this->getDataComentario(),
+            'comentarioParent' => $this->getComentarioParent(),
+            'post' => $this->getPost(),
+        ];
+
+        if (!empty($this->getId())) {
+            $toArray['id'] = $this->getId();
+        }
+
+        return $toArray;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function fromArray($array)
+    {
+        return (new Comentario())
+            ->setNomeAutor($array['nomeAutor'])
+            ->setEmail($array['email'])
+            ->setComentarioTexto($array['comentarioTexto'])
+            ->setStatus($array['status'])
+            ->setDataComentario($array['dataComentario'])
+            ->setComentarioParent($array['comentarioParent'])
+            ->setPost($array['post']);
+    }
 }

@@ -192,4 +192,39 @@ class Conteudo extends AbstractEntity
         $this->tipoConteudo = $tipoConteudo;
         return $this;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray(): array
+    {
+        $toArray = [
+            'imagem' => $this->getImagem(),
+            'titulo' => $this->getTitulo(),
+            'slug' => $this->getSlug(),
+            'conteudo' => $this->getConteudo(),
+            'link' => $this->getLink(),
+            'tipoConteudo' => $this->getTipoConteudo(),
+        ];
+
+        if (!empty($this->getId())) {
+            $toArray['id'] = $this->getId();
+        }
+
+        return $toArray;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function fromArray($array)
+    {
+        return (new Conteudo())
+            ->setImagem($array['imagem'])
+            ->setTitulo($array['titulo'])
+            ->setSlug($array['slug'])
+            ->setConteudo($array['conteudo'])
+            ->setLink($array['link'])
+            ->setTipoConteudo($array['tipoConteudo']);
+    }
 }

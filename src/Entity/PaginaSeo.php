@@ -161,4 +161,37 @@ class PaginaSeo extends AbstractEntity
         $this->seoOpenGraph = $seoOpenGraph;
         return $this;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray(): array
+    {
+        $toArray = [
+            'url' => $this->getUrl(),
+            'seoTitle' => $this->getSeoTitle(),
+            'seoDescription' => $this->getSeoDescription(),
+            'seoSpamText' => $this->getSeoSpamText(),
+            'seoOpenGraph' => $this->getSeoOpenGraph(),
+        ];
+
+        if (!empty($this->getId())) {
+            $toArray['id'] = $this->getId();
+        }
+
+        return $toArray;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function fromArray($array)
+    {
+        return (new PaginaSeo())
+            ->setUrl($array['url'])
+            ->setSeoTitle($array['seoTitle'])
+            ->setSeoDescription($array['seoDescription'])
+            ->setSeoSpamText($array['seoSpamText'])
+            ->setSeoOpenGraph($array['seoOpenGraph']);
+    }
 }

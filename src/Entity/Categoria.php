@@ -251,4 +251,43 @@ class Categoria extends AbstractEntity
         $this->status = $status;
         return $this;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray(): array
+    {
+        $toArray = [
+            'nome' => $this->getNome(),
+            'slug' => $this->getSlug(),
+            'descricao' => $this->getDescricao(),
+            'seoTitle' => $this->getSeoTitle(),
+            'seoDescription' => $this->getSeoDescription(),
+            'seoSpamText' => $this->getSeoSpamText(),
+            'seoOpenGraph' => $this->getSeoOpenGraph(),
+            'status' => $this->isStatus(),
+        ];
+
+        if (!empty($this->getId())) {
+            $toArray['id'] = $this->getId();
+        }
+
+        return $toArray;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function fromArray($array)
+    {
+        return (new Categoria())
+            ->setNome($array['nome'])
+            ->setSlug($array['slug'])
+            ->setDescricao($array['descricao'])
+            ->setSeoTitle($array['seoTitle'])
+            ->setSeoDescription($array['seoDescription'])
+            ->setSeoSpamText($array['seoSpamText'])
+            ->setSeoOpenGraph($array['seoOpenGraph'])
+            ->setStatus($array['status']);
+    }
 }

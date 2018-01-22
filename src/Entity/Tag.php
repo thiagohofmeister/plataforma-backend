@@ -127,4 +127,33 @@ class Tag extends AbstractEntity
 
         return $this;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray(): array
+    {
+        $toArray = [
+            'nome' => $this->getNome(),
+            'slug' => $this->getSlug(),
+            'posts' => $this->getPosts(),
+        ];
+
+        if (!empty($this->getId())) {
+            $toArray['id'] = $this->getId();
+        }
+
+        return $toArray;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function fromArray($array)
+    {
+        return (new Tag())
+            ->setNome($array['nome'])
+            ->setSlug($array['slug'])
+            ->setPosts($array['posts']);
+    }
 }

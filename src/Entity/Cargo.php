@@ -94,4 +94,31 @@ class Cargo extends AbstractEntity
         $this->nivel = $nivel;
         return $this;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray(): array
+    {
+        $toArray = [
+            'descricao' => $this->getDescricao(),
+            'nivel' => $this->getNivel(),
+        ];
+
+        if (!empty($this->getId())) {
+            $toArray['id'] = $this->getId();
+        }
+
+        return $toArray;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function fromArray($array)
+    {
+        return (new Cargo)
+            ->setDescricao($array['descricao'])
+            ->setNivel($array['nivel']);
+    }
 }

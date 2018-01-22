@@ -53,4 +53,20 @@ abstract class AbstractEntity
         $this->id = $id;
         return $this;
     }
+
+    /**
+     * Converte a entidade para um array esperado pelo documento.
+     *
+     * @return array
+     */
+    abstract public function toArray(): array;
+
+    /**
+     * Cria uma entidade a partir dos dados do documento.
+     *
+     * @param array $array
+     *
+     * @return static|AbstractEntity
+     */
+    abstract public static function fromArray(array $array);
 }

@@ -488,4 +488,57 @@ class Post extends AbstractEntity
 
         return $this;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray(): array
+    {
+        $toArray = [
+            'titulo' => $this->getTitulo(),
+            'imagem' => $this->getImagem(),
+            'slug' => $this->getSlug(),
+            'migalha' => $this->getMigalha(),
+            'conteudo' => $this->getConteudo(),
+            'dataPostagem' => $this->getDataPostagem(),
+            'seoTitle' => $this->getSeoTitle(),
+            'seoDescription' => $this->getSeoDescription(),
+            'seoSpamText' => $this->getSeoSpamText(),
+            'seoOpenGraph' => $this->getSeoOpenGraph(),
+            'possuiSeo' => $this->isPossuiSeo(),
+            'status' => $this->isStatus(),
+            'usuario' => $this->getUsuario(),
+            'categoria' => $this->getCategoria(),
+            'tags' => $this->getTags(),
+        ];
+
+        if (!empty($this->getId())) {
+            $toArray['id'] = $this->getId();
+        }
+
+        return $toArray;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function fromArray($array)
+    {
+        return (new Post)
+            ->setTitulo($array['titulo'])
+            ->setImagem($array['imagem'])
+            ->setSlug($array['slug'])
+            ->setMigalha($array['migalha'])
+            ->setConteudo($array['conteudo'])
+            ->setDataPostagem($array['dataPostagem'])
+            ->setSeoTitle($array['seoTitle'])
+            ->setSeoDescription($array['seoDescription'])
+            ->setSeoSpamText($array['seoSpamText'])
+            ->setSeoOpenGraph($array['seoOpenGraph'])
+            ->setPossuiSeo($array['possuiSeo'])
+            ->setStatus($array['status'])
+            ->setUsuario($array['usuario'])
+            ->setCategoria($array['categoria'])
+            ->setTags($array['tags']);
+    }
 }

@@ -71,4 +71,31 @@ class TipoConteudo extends AbstractEntity
         $this->slug = $slug;
         return $this;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray(): array
+    {
+        $toArray = [
+            'descricao' => $this->getDescricao(),
+            'slug' => $this->getSlug(),
+        ];
+
+        if (!empty($this->getId())) {
+            $toArray['id'] = $this->getId();
+        }
+
+        return $toArray;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function fromArray($array)
+    {
+        return (new TipoConteudo())
+            ->setDescricao($array['descricao'])
+            ->setSlug($array['slug']);
+    }
 }
