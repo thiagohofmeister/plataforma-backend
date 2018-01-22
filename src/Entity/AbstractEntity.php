@@ -12,6 +12,15 @@ use Doctrine\ORM\EntityManager;
 abstract class AbstractEntity
 {
     /**
+     * @ORM\Id
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @var int $id
+     */
+    protected $id;
+
+    /**
      * Get array copy of object
      *
      * @return array
@@ -19,5 +28,28 @@ abstract class AbstractEntity
     public function getArrayCopy()
     {
         return get_object_vars($this);
+    }
+
+    /**
+     * Retorna a propriedade {@see AbstractEntity::$id}.
+     *
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * Define a propriedade {@see AbstractEntity::$id}.
+     *
+     * @param int $id
+     *
+     * @return AbstractEntity
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
     }
 }
