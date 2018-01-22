@@ -2,31 +2,31 @@
 
 namespace App\Contract;
 
-use App\Repository\Post;
+use App\Repository\AbstractRepository;
 use App\Service\Base;
 use Slim\Http\Request;
 
 /**
- * @todo Document class Service.
+ * Contrato de servicos.
  *
  * @author Thiago Hofmeister <thiago.souza@moovin.com.br>
  */
 abstract class Service
 {
-    /** @var Post */
-    protected $moduleRepository;
+    /** @var AbstractRepository */
+    protected $serviceRespository;
 
     /** @var Request */
     protected $request;
 
     /**
-     * @param Post $moduleRepository
+     * @param AbstractRepository $serviceRespository
      * @param Request $request
      */
-    public function __construct(Post $moduleRepository, Request $request)
+    public function __construct(AbstractRepository $serviceRespository, Request $request)
     {
         $this->request = $request;
-        $this->moduleRepository = $moduleRepository;
+        $this->serviceRespository = $serviceRespository;
     }
 
     /**
@@ -36,7 +36,7 @@ abstract class Service
      *
      * @throws \Exception
      */
-    public function action(array ...$parameters)
+    public function action(...$parameters)
     {
         if ($this->request->isGet()) {
             return $this->get($parameters);
@@ -60,54 +60,71 @@ abstract class Service
     }
 
     /**
+     * Metodo referente a requisicao de GET.
+     *
      * @param array $parameters
+     *
+     * @return Base\Response
      *
      * @throws \Exception
      */
-    protected function get(array $parameters)
+    protected function get(array $parameters): Base\Response
     {
         throw new \Exception("Method not implemented");
     }
 
     /**
+     * Metodo referente a requisicao de POST.
      *
      * @param array $parameters
      *
+     * @return static|Base\Response
+     *
      * @throws \Exception
      */
-    protected function post(array $parameters)
+    protected function post(array $parameters): Base\Response
     {
         throw new \Exception("Method not implemented");
     }
 
     /**
+     * Metodo referente a requisicao de PUT.
      *
      * @param array $parameters
      *
+     * @return Base\Response
+     *
      * @throws \Exception
      */
-    protected function put(array $parameters)
+    protected function put(array $parameters): Base\Response
     {
         throw new \Exception("Method not implemented");
     }
 
     /**
+     * Metodo referente a requisicao de PATCH.
      *
      * @param array $parameters
      *
+     * @return Base\Response
+     *
      * @throws \Exception
      */
-    protected function patch(array $parameters)
+    protected function patch(array $parameters): Base\Response
     {
         throw new \Exception("Method not implemented");
     }
 
     /**
+     * Metodo referente a requisicao de DELETE.
+     *
      * @param array $parameters
+     *
+     * @return Base\Response
      *
      * @throws \Exception
      */
-    protected function delete(array $parameters)
+    protected function delete(array $parameters): Base\Response
     {
         throw new \Exception("Method not implemented");
     }

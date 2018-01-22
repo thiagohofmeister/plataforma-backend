@@ -3,7 +3,7 @@
 namespace App\Core;
 
 /**
- * @todo Document class Controller.
+ * Abstracao das controllers do sistema.
  *
  * @author Thiago Hofmeister <thiago.souza@moovin.com.br>
  */

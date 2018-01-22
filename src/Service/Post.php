@@ -5,9 +5,12 @@ namespace App\Service;
 use App\Contract;
 use App\Enum\HttpStatusCode;
 use App\Service\Base;
+use App\Repository;
 
 /**
  * Servico relacionado as postagens.
+ *
+ * @property Repository\Post $serviceRespository
  *
  * @author Thiago Hofmeister <thiago.souza@moovin.com.br>
  */
@@ -18,9 +21,9 @@ class Post extends Contract\Service
      *
      * @return Base\Response
      */
-    public function get(array $parameters)
+    public function get($parameters): Base\Response
     {
-        $posts = $this->moduleRepository->getAll();
+        $posts = $this->serviceRespository->getAll();
         if (!empty($posts)) {
             return Base\Response::create([
                 'total' => count($posts),

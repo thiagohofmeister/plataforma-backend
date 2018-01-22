@@ -7,7 +7,7 @@ use Slim\Http\Response;
 use App\Enum;
 
 /**
- * @todo Document class Core.
+ * Abstracao do core de controllers.
  *
  * @author Thiago Hofmeister <thiago.souza@moovin.com.br>
  */
