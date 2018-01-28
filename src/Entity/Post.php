@@ -505,7 +505,7 @@ class Post extends AbstractEntity
             'seoTitle' => $this->getSeoTitle(),
             'seoDescription' => $this->getSeoDescription(),
             'seoSpamText' => $this->getSeoSpamText(),
-            'seoOpenGraph' => $this->getSeoOpenGraph(),
+            'seoOpenGraph' => Router::parser($this->getSeoOpenGraph()),
             'possuiSeo' => $this->isPossuiSeo(),
             'status' => $this->isStatus(),
             'usuario' => $this->getUsuario()->toArray(),
