@@ -20,6 +20,28 @@ $app = new class() extends App {
     }
 };
 
+$app->add(new \App\Middleware\Header());
+
+$app->any('/public/{path}[/{parameters:.*}]',  function (Response $response, string $path, string $parameters = '')
+{
+    $pathTmp = [
+        '..',
+        'public'
+    ];
+    $pathFull = implode(DS, $pathTmp) . DS . $path . DS . $parameters;
+    $image = file_get_contents($pathFull);
+
+    $finfo = @finfo_open(FILEINFO_MIME_TYPE);
+    $type = finfo_file($finfo, $pathFull);
+    if($image === FALSE) {
+        return $response->write("test");
+    }
+
+    $response->write($image);
+
+    return $response->withHeader('Content-Type', $type);
+});
+
 $app->any('/{controller}[/[{method}[/{parameters:.*}]]]',  function (Request $request, Response $response, \DI\Container $container, string $controller, string $method = 'index', string $parameters = '')
 {
     $parameters = !empty($parameters) ? explode('/', $parameters) : [];
