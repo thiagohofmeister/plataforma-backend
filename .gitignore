@@ -11,7 +11,10 @@ nbproject
 .metadata
 
 # Pastas
-public/images
+public/uploads/*.png
+public/uploads/*.jpg
+public/uploads/*.txt
+public/uploads/*.pdf
 
 # Extensoes de IDE
 *.swp
