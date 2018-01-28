@@ -10,6 +10,9 @@ nbproject
 .idea
 .metadata
 
+# Pastas
+public/images
+
 # Extensoes de IDE
 *.swp
 *.sublime-project
