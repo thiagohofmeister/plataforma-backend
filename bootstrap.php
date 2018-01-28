@@ -22,19 +22,22 @@ $app = new class() extends App {
 
 $app->add(new \App\Middleware\Header());
 
-$app->any('/public/{path}[/{parameters:.*}]',  function (Response $response, string $path, string $parameters = '')
+$app->any('/public[/{parameters:.*}]',  function (Response $response, string $parameters = '')
 {
     $pathTmp = [
         '..',
         'public'
     ];
-    $pathFull = implode(DS, $pathTmp) . DS . $path . DS . $parameters;
+    $pathFull = implode(DS, $pathTmp) . DS . $parameters;
     $image = file_get_contents($pathFull);
 
     $finfo = @finfo_open(FILEINFO_MIME_TYPE);
     $type = finfo_file($finfo, $pathFull);
-    if($image === FALSE) {
-        return $response->write("test");
+
+    if($image === false) {
+        return $response->withJson([
+            'message' => 'Arquivo não foi encontrado.'
+        ], 404);
     }
 
     $response->write($image);
