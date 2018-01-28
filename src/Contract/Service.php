@@ -19,6 +19,10 @@ abstract class Service
     /** @var Request */
     protected $request;
 
+    protected $page;
+
+    protected $limit;
+
     /**
      * @param AbstractRepository $serviceRespository
      * @param Request $request
@@ -27,6 +31,16 @@ abstract class Service
     {
         $this->request = $request;
         $this->serviceRespository = $serviceRespository;
+
+        $this->page = 1;
+        if (!empty($request->getParam('page'))) {
+            $this->page = $request->getParam('page');
+        }
+
+        $this->limit = 20;
+        if (!empty($request->getParam('limit'))) {
+            $this->limit = $request->getParam('limit');
+        }
     }
 
     /**
@@ -127,5 +141,15 @@ abstract class Service
     protected function delete(array $parameters): Base\Response
     {
         throw new \Exception("Method not implemented");
+    }
+
+    /**
+     * Retorna offset para consulta.
+     *
+     * @return int
+     */
+    protected function getOffset()
+    {
+        return ($this->page - 1) * $this->limit;
     }
 }

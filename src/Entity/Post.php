@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Utils\Router;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -496,7 +497,7 @@ class Post extends AbstractEntity
     {
         $toArray = [
             'titulo' => $this->getTitulo(),
-            'imagem' => $this->getImagem(),
+            'imagem' => Router::parser($this->getImagem()),
             'slug' => $this->getSlug(),
             'migalha' => $this->getMigalha(),
             'conteudo' => $this->getConteudo(),

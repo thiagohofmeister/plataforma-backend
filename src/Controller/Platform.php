@@ -16,7 +16,7 @@ class Platform extends Controller
      * @var Service\Base\Caller
      * @Inject
      */
-    private $moduleCaller;
+    private $platformCaller;
 
     /**
      * @param string $methodName
@@ -28,7 +28,7 @@ class Platform extends Controller
      */
     public function api(string $methodName, ...$parameters)
     {
-        $response = $this->moduleCaller->action($methodName, $parameters);
+        $response = $this->platformCaller->action($methodName, $parameters);
 
         return $this->renderResponse($response->getData(), $response->getStatusCode());
     }

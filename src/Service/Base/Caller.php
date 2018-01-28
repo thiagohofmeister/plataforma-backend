@@ -30,6 +30,8 @@ class Caller
     }
 
     /**
+     * Chama metodo para consumir recursos.
+     *
      * @param $actionName
      * @param array $parameters
      *

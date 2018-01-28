@@ -17,13 +17,15 @@ use App\Repository;
 class Post extends Contract\Service
 {
     /**
+     * Retorna lista de postagens da Api.
+     *
      * @inheritDoc
      *
      * @return Base\Response
      */
     public function get($parameters = []): Base\Response
     {
-        $posts = $this->serviceRespository->getAll();
+        $posts = $this->serviceRespository->getAll($this->limit, $this->getOffset());
         if (!empty($posts)) {
             return Base\Response::create([
                 'total' => count($posts),

@@ -12,13 +12,16 @@ class Post extends AbstractRepository
     /**
      * Retorna lista com todas postagens.
      *
+     * @param int $limit
+     * @param int $offset
+     *
      * @return array
      */
-    public function getAll(): array
+    public function getAll($limit, $offset): array
     {
         $posts = [];
         /** @var \App\Entity\Post $item */
-        foreach ($this->table->findAll() as $item) {
+        foreach ($this->table->findBy([], [], $limit, $offset) as $item) {
 
             $posts[] = $item->toArray();
         }

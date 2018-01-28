@@ -23,6 +23,8 @@ class Loader
     }
 
     /**
+     * Chama acoes para executar recurso.
+     *
      * @param string $actionName
      *
      * @return mixed
