@@ -20,8 +20,6 @@ class Post extends Contract\Service
      * Retorna lista de postagens da Api.
      *
      * @inheritDoc
-     *
-     * @return Base\Response
      */
     public function get($slug = []): Base\Response
     {

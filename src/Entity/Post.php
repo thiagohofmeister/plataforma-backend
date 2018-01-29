@@ -542,7 +542,7 @@ class Post extends AbstractEntity
             'seoOpenGraph' => Router::parser($this->getSeoOpenGraph()),
             'possuiSeo' => $this->isPossuiSeo(),
             'status' => $this->isStatus(),
-            'usuario' => $this->getUsuario()->toArray(),
+            'autor' => $this->getUsuario()->toArray(),
             'categoria' => $this->getCategoria()->toArray(),
             'url' => $this->getCategoria()->getSlug() . '/' . $this->getSlug()
         ];

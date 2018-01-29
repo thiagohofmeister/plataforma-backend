@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="pagina_seos")
  */
-class PaginaSeo extends AbstractEntity
+class Seo extends AbstractEntity
 {
     /**
      * @ORM\Column(type="string", length=200)
@@ -62,7 +62,7 @@ class PaginaSeo extends AbstractEntity
      *
      * @param string $url
      *
-     * @return PaginaSeo
+     * @return Seo
      */
     public function setUrl($url)
     {
@@ -85,7 +85,7 @@ class PaginaSeo extends AbstractEntity
      *
      * @param string $seoTitle
      *
-     * @return PaginaSeo
+     * @return Seo
      */
     public function setSeoTitle($seoTitle)
     {
@@ -108,7 +108,7 @@ class PaginaSeo extends AbstractEntity
      *
      * @param string $seoDescription
      *
-     * @return PaginaSeo
+     * @return Seo
      */
     public function setSeoDescription($seoDescription)
     {
@@ -131,7 +131,7 @@ class PaginaSeo extends AbstractEntity
      *
      * @param string $seoSpamText
      *
-     * @return PaginaSeo
+     * @return Seo
      */
     public function setSeoSpamText($seoSpamText)
     {
@@ -154,7 +154,7 @@ class PaginaSeo extends AbstractEntity
      *
      * @param string $seoOpenGraph
      *
-     * @return PaginaSeo
+     * @return Seo
      */
     public function setSeoOpenGraph($seoOpenGraph)
     {
@@ -175,6 +175,12 @@ class PaginaSeo extends AbstractEntity
             'seoOpenGraph' => $this->getSeoOpenGraph(),
         ];
 
+        /*$toArray = [
+            'title' => [
+                'inner' => $this->getSeoTitle()
+            ]
+        ];*/
+
         if (!empty($this->getId())) {
             $toArray['id'] = $this->getId();
         }
@@ -187,7 +193,7 @@ class PaginaSeo extends AbstractEntity
      */
     public static function fromArray($array)
     {
-        return (new PaginaSeo())
+        return (new Seo())
             ->setUrl($array['url'])
             ->setSeoTitle($array['seoTitle'])
             ->setSeoDescription($array['seoDescription'])

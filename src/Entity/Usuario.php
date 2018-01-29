@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Enum\Genre;
+use App\Utils\Router;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -290,7 +291,7 @@ class Usuario extends AbstractEntity
     public function toArray(): array
     {
         $toArray = [
-            'imagem' => $this->getImagem(),
+            'imagem' => Router::parser($this->getImagem()),
             'nome' => $this->getNome(),
             'email' => $this->getEmail(),
             'facebook' => $this->getFacebook(),
