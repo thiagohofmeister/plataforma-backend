@@ -504,7 +504,7 @@ class Post extends AbstractEntity
                 'html' => $this->getConteudo(),
                 'plainText' => strip_tags($this->getConteudo())
             ],
-            'dataPostagem' => $this->getDataPostagem(),
+            'dataPostagem' => $this->getDataPostagem()->format('d/m/Y'),
             'seoTitle' => $this->getSeoTitle(),
             'seoDescription' => $this->getSeoDescription(),
             'seoSpamText' => $this->getSeoSpamText(),

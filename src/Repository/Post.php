@@ -21,7 +21,7 @@ class Post extends AbstractRepository
     {
         $posts = [];
         /** @var \App\Entity\Post $item */
-        foreach ($this->table->findBy([], [], $limit, $offset) as $item) {
+        foreach ($this->table->findBy([], ['dataPostagem' => 'desc'], $limit, $offset) as $item) {
 
             $posts[] = $item->toArray();
         }
