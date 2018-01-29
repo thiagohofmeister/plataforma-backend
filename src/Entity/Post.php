@@ -125,9 +125,17 @@ class Post extends AbstractEntity
      */
     protected $tags;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Comentario", mappedBy="post")
+     *
+     * @var Comentario[] $comentarios
+     */
+    protected $comentarios;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->comentarios = new ArrayCollection();
     }
 
     /**
@@ -477,6 +485,29 @@ class Post extends AbstractEntity
     }
 
     /**
+     * Retorna a propriedade {@see Post::$tags}.
+     *
+     * @return Comentario[]
+     */
+    public function getComentarios()
+    {
+        return $this->comentarios;
+    }
+
+    /**
+     * Define a propriedade {@see Post::$comentarios}.
+     *
+     * @param Comentario[] $comentarios
+     *
+     * @return Post
+     */
+    public function setComentarios($comentarios)
+    {
+        $this->comentarios = $comentarios;
+        return $this;
+    }
+
+    /**
      * Adiciona uma tag na propriedade $tags.
      *
      * @param Tag $tag
@@ -515,6 +546,12 @@ class Post extends AbstractEntity
             'categoria' => $this->getCategoria()->toArray(),
             'url' => $this->getCategoria()->getSlug() . '/' . $this->getSlug()
         ];
+
+        foreach ($this->getComentarios() as $comment) {
+            $toArray['comentarios']['itens'][] = $comment->toArray();
+        }
+
+        $toArray['comentarios']['quantidade'] = count($toArray['comentarios']['itens']);
 
         foreach ($this->getTags() as $tag) {
             $toArray['tags'][] = $tag->toArray();

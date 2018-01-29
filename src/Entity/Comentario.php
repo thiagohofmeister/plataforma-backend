@@ -56,7 +56,7 @@ class Comentario extends AbstractEntity
     protected $comentarioParent;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Post")
+     * @ORM\ManyToOne(targetEntity="Post", inversedBy="comentarios")
      * @ORM\JoinColumn(name="id_post", referencedColumnName="id")
      *
      * @var Post $post
@@ -183,7 +183,7 @@ class Comentario extends AbstractEntity
      *
      * @return Comentario
      */
-    public function getComentarioParent(): Comentario
+    public function getComentarioParent(): ?Comentario
     {
         return $this->comentarioParent;
     }
@@ -234,10 +234,12 @@ class Comentario extends AbstractEntity
             'email' => $this->getEmail(),
             'comentarioTexto' => $this->getComentarioTexto(),
             'status' => $this->isStatus(),
-            'dataComentario' => $this->getDataComentario(),
-            'comentarioParent' => $this->getComentarioParent(),
-            'post' => $this->getPost(),
+            'dataComentario' => $this->getDataComentario()->format('d/m/Y'),
         ];
+
+        if (!empty($this->getComentarioParent())) {
+            $toArray['comentarioPai'] = $this->getComentarioParent()->toArray();
+        }
 
         if (!empty($this->getId())) {
             $toArray['id'] = $this->getId();
