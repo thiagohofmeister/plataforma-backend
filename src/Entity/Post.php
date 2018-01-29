@@ -500,7 +500,10 @@ class Post extends AbstractEntity
             'imagem' => Router::parser($this->getImagem()),
             'slug' => $this->getSlug(),
             'migalha' => $this->getMigalha(),
-            'conteudo' => $this->getConteudo(),
+            'conteudo' => [
+                'html' => $this->getConteudo(),
+                'plainText' => strip_tags($this->getConteudo())
+            ],
             'dataPostagem' => $this->getDataPostagem(),
             'seoTitle' => $this->getSeoTitle(),
             'seoDescription' => $this->getSeoDescription(),
@@ -510,6 +513,7 @@ class Post extends AbstractEntity
             'status' => $this->isStatus(),
             'usuario' => $this->getUsuario()->toArray(),
             'categoria' => $this->getCategoria()->toArray(),
+            'url' => $this->getCategoria()->getSlug() . '/' . $this->getSlug()
         ];
 
         foreach ($this->getTags() as $tag) {

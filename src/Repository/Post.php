@@ -28,4 +28,21 @@ class Post extends AbstractRepository
 
         return $posts;
     }
+
+    /**
+     * Retorna postagem filtrando por slug.
+     *
+     * @param array $slug
+     *
+     * @return array
+     */
+    public function getBySlug($slug)
+    {
+        if (is_array($slug)) {
+            $slug = reset($slug);
+        }
+        return [
+            $this->table->findOneBy(['slug' => $slug])->toArray()
+        ];
+    }
 }

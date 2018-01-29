@@ -23,9 +23,17 @@ class Post extends Contract\Service
      *
      * @return Base\Response
      */
-    public function get($parameters = []): Base\Response
+    public function get($slug = []): Base\Response
     {
-        $posts = $this->serviceRespository->getAll($this->limit, $this->getOffset());
+        if (!empty($slug)) {
+
+            $posts = $this->serviceRespository->getBySlug($slug);
+
+        } else {
+
+            $posts = $this->serviceRespository->getAll($this->limit, $this->getOffset());
+        }
+
         if (!empty($posts)) {
             return Base\Response::create([
                 'total' => count($posts),
