@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Enum;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -34,9 +36,9 @@ class Comentario extends AbstractEntity
     protected $comentarioTexto;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=1)
      *
-     * @var bool $status
+     * @var string $status
      */
     protected $status;
 
@@ -135,9 +137,9 @@ class Comentario extends AbstractEntity
     /**
      * Retorna a propriedade {@see Comentario::$status}.
      *
-     * @return bool
+     * @return string
      */
-    public function isStatus(): bool
+    public function getStatus(): string
     {
         return $this->status;
     }
@@ -145,7 +147,7 @@ class Comentario extends AbstractEntity
     /**
      * Define a propriedade {@see Comentario::$status}.
      *
-     * @param bool $status
+     * @param string $status
      *
      * @return Comentario
      */
@@ -233,7 +235,7 @@ class Comentario extends AbstractEntity
             'nomeAutor' => $this->getNomeAutor(),
             'email' => $this->getEmail(),
             'comentarioTexto' => $this->getComentarioTexto(),
-            'status' => $this->isStatus(),
+            'status' => Enum\Comentario\Status::memberByValue($this->getStatus())->getLabel(),
             'dataComentario' => $this->getDataComentario()->format('d/m/Y'),
         ];
 

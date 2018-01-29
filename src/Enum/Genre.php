@@ -6,10 +6,8 @@ namespace App\Enum;
 /**
  * Generos disponiveis.
  *
- * @method static Genre GET()
- * @method static Genre POST()
- * @method static Genre PUT()
- * @method static Genre DELETE()
+ * @method static Genre FEMALE()
+ * @method static Genre MALE()
  *
  * @author Thiago Hofmeister <thiago.hofmeister@gmail.com>
  */
