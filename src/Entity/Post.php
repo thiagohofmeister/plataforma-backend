@@ -2,9 +2,9 @@
 
 namespace App\Entity;
 
-use App\Utils\Router;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use MDW\Utils\Router;
 
 /**
  * Modelagem referente as postagens.

@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use App\Enum\Genre;
-use App\Utils\Router;
+use MDW\Utils\Router;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 /**
- * Repositório de operações de banco da tabela de posts.
+ * Repositório de operações de banco da tabela de seo de páginas.
  *
  * @author Thiago Hofmeister <thiago.hofmeister@gmail.com>
  */
