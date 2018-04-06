@@ -42,7 +42,19 @@ class Post extends AbstractRepository
             $slug = reset($slug);
         }
         return [
-            $this->table->findOneBy(['slug' => $slug])->toArray()
+            $this->table->findOneBy(['slug' => $slug])
         ];
+    }
+
+    /**
+     * Retorna postagem filtrando por identificador da categoria.
+     *
+     * @param string $categoryId
+     *
+     * @return array
+     */
+    public function getByCategory($categoryId)
+    {
+        return $this->table->findBy(['categoria' => $categoryId]);
     }
 }

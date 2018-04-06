@@ -17,6 +17,12 @@ use App\Repository;
 class Post extends Contract\Service
 {
     /**
+     * @var Repository\Categoria
+     * @Inject
+     */
+    private $categoryRepository;
+
+    /**
      * Retorna lista de postagens da Api.
      *
      * @inheritDoc
@@ -25,17 +31,33 @@ class Post extends Contract\Service
     {
         if (!empty($slug)) {
 
-            $posts = $this->serviceRespository->getBySlug($slug);
+            $category = reset($this->categoryRepository->getBySlug($slug));
+            if (!empty($category)) {
+
+                $posts = $this->serviceRespository->getByCategory($category->getId());
+
+            } else {
+
+                $posts = $this->serviceRespository->getBySlug($slug);
+
+            }
 
         } else {
 
             $posts = $this->serviceRespository->getAll($this->limit, $this->getOffset());
+
         }
 
         if (!empty($posts)) {
+
+            $postsFormatted = [];
+            foreach ($posts as $post) {
+                $postsFormatted[] = $post->toArray();
+            }
+
             return Base\Response::create([
-                'total' => count($posts),
-                'posts' => $posts
+                'total' => count($postsFormatted),
+                'posts' => $postsFormatted
             ], HttpStatusCode::OK());
         }
 
